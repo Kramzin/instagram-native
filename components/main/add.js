@@ -4,7 +4,7 @@ import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 
 
-export default function App() {
+export default function Add({ navigation }) {
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
     const [camera, setCamera] = useState(null);
@@ -31,19 +31,19 @@ export default function App() {
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-          aspect: [1, 1],
-          quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
         });
-    
+
         console.log(result);
-    
+
         if (!result.cancelled) {
-          setImage(result.uri);
+            setImage(result.uri);
         }
-      };
-    
+    };
+
 
     if (hasCameraPermission === null || hasGalleryPermission === false) {
         return <View />;
@@ -73,6 +73,7 @@ export default function App() {
             </Button>
             <Button title="Take Picture" onPress={() => takePicture()} />
             <Button title="Pick Image From Gallery" onPress={() => pickImage()} />
+            <Button title="Save" onPress={() => navigation.navigate('Save', { image })} />
             {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}
         </View>
     );

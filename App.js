@@ -8,6 +8,7 @@ import RegisterScreen from './components/auth/register';
 import LoginScreen from './components/auth/login';
 import MainScreen from './components/main';
 import AddScreen from './components/main/add';
+import SaveScreen from './components/main/save';
 import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -72,6 +73,7 @@ export class App extends Component {
           <Stack.Navigator initialRouteName="Main">
             <Stack.Screen name="Main" component={MainScreen} />
             <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} />
+            <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
